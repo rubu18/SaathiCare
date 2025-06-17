@@ -1,0 +1,182 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
+
+@layer base {
+  :root {
+    --background: 248 250 252;
+    --foreground: 30 41 59;
+
+    --card: 255 255 255;
+    --card-foreground: 30 41 59;
+
+    --popover: 255 255 255;
+    --popover-foreground: 30 41 59;
+
+    --primary: 59 130 246;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 240 249 255;
+    --secondary-foreground: 30 58 138;
+
+    --muted: 241 245 249;
+    --muted-foreground: 100 116 139;
+
+    --accent: 219 234 254;
+    --accent-foreground: 30 58 138;
+
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 59 130 246;
+
+    --radius: 12px;
+
+    --sidebar-background: 255 255 255;
+    --sidebar-foreground: 30 41 59;
+    --sidebar-primary: 59 130 246;
+    --sidebar-primary-foreground: 255 255 255;
+    --sidebar-accent: 241 245 249;
+    --sidebar-accent-foreground: 30 41 59;
+    --sidebar-border: 226 232 240;
+    --sidebar-ring: 59 130 246;
+  }
+
+  .dark {
+    --background: 15 23 42;
+    --foreground: 248 250 252;
+
+    --card: 30 41 59;
+    --card-foreground: 248 250 252;
+
+    --popover: 30 41 59;
+    --popover-foreground: 248 250 252;
+
+    --primary: 96 165 250;
+    --primary-foreground: 15 23 42;
+
+    --secondary: 30 41 59;
+    --secondary-foreground: 248 250 252;
+
+    --muted: 51 65 85;
+    --muted-foreground: 148 163 184;
+
+    --accent: 51 65 85;
+    --accent-foreground: 248 250 252;
+
+    --destructive: 220 38 38;
+    --destructive-foreground: 248 250 252;
+
+    --border: 51 65 85;
+    --input: 51 65 85;
+    --ring: 96 165 250;
+
+    --sidebar-background: 15 23 42;
+    --sidebar-foreground: 248 250 252;
+    --sidebar-primary: 96 165 250;
+    --sidebar-primary-foreground: 15 23 42;
+    --sidebar-accent: 30 41 59;
+    --sidebar-accent-foreground: 248 250 252;
+    --sidebar-border: 51 65 85;
+    --sidebar-ring: 96 165 250;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+  }
+}
+
+@layer components {
+  .saathi-gradient {
+    background: linear-gradient(135deg, rgb(240 249 255) 0%, rgb(255 255 255) 100%);
+  }
+  
+  .saathi-button {
+    @apply bg-medical-primary hover:bg-medical-primary-dark text-white font-medium py-3 px-6 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md;
+  }
+  
+  .saathi-card {
+    @apply bg-white rounded-2xl shadow-sm border border-medical-blue-100 p-6 transition-all duration-200 hover:shadow-md;
+  }
+
+  .medical-accent {
+    @apply bg-medical-mint-50 text-medical-mint-700 border border-medical-mint-200;
+  }
+
+  /* Autofill fix for input fields everywhere, including Dialog/modal */
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:active {
+    -webkit-text-fill-color: #111827 !important; /* Tailwind text-gray-900 */
+    background-color: #fff !important;
+    -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+    box-shadow: 0 0 0 1000px #fff inset !important;
+    caret-color: #111827 !important;
+    color: #111827 !important;
+    transition: background-color 9999s ease-in-out 0s;
+    filter: none !important;
+  }
+
+  input:-webkit-autofill::first-line {
+    color: #111827 !important; /* First line text in autofill yellow */
+    -webkit-text-fill-color: #111827 !important;
+  }
+
+  input:-webkit-autofill::placeholder {
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827 !important;
+    opacity: 1 !important;
+  }
+
+  input:-webkit-autofill::-webkit-input-placeholder {
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827 !important;
+    opacity: 1 !important;
+  }
+
+  /* Make sure input autofill is fixed inside Dialog modals too */
+  .dialog-content input:-webkit-autofill,
+  .dialog-content input:-webkit-autofill:focus,
+  .dialog-content input:-webkit-autofill:hover,
+  .dialog-content input:-webkit-autofill:active {
+    -webkit-text-fill-color: #111827 !important;
+    background-color: #fff !important;
+    -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+    box-shadow: 0 0 0 1000px #fff inset !important;
+    color: #111827 !important;
+    filter: none !important;
+  }
+
+  .dialog-content input:-webkit-autofill::first-line,
+  .dialog-content input:-webkit-autofill::placeholder,
+  .dialog-content input:-webkit-autofill::-webkit-input-placeholder {
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827 !important;
+    opacity: 1 !important;
+  }
+} /* <----- THIS LINE ADDED: Properly closes the @layer components block */
+
+ /* As a last resort, enable autofill fix globally for all inputs including modals */
+input:-internal-autofill-selected {
+  background-color: #fff !important;
+  color: #111827 !important;
+}
+
+/* Standard placeholder always black for better visibility even if autofill doesn't trigger */
+input::placeholder {
+  color: #111827 !important;
+  opacity: 1;
+}
+
